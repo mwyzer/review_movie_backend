@@ -17,6 +17,7 @@ exports.create = async (req, res) => {
 
   // generate 6 digit otp
   let OTP = generateOTP();
+
   // store otp inside db
   const newEmailVerificationToken = new EmailVerificationToken({
     owner: newUser._id,
@@ -40,8 +41,11 @@ exports.create = async (req, res) => {
   });
 
   res.status(201).json({
-    message:
-      'Please verify your email. OTP has been sent to your email account!',
+    user: {
+      id: newUser._id,
+      name: newUser.name,
+      email: newUser.email,
+    },
   });
 };
 
