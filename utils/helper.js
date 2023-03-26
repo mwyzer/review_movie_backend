@@ -7,10 +7,10 @@ exports.sendError = (res, error, statusCode = 401) => {
 exports.generateRandomByte = () => {
   return new Promise((resolve, reject) => {
     crypto.randomBytes(30, (err, buff) => {
-      if (err) return console.log(err);
+      if (err) return reject(err);
       const buffString = buff.toString('hex');
 
-      console.log(buffString)
+      console.log(buffString);
       resolve(buffString);
     });
   });
